@@ -17,13 +17,13 @@ import myAccount from './components/myAccount/myAccount';
 import mySchedule from './components/mySchedule/mySchedule';
 import myTeams from './components/myTeams/myTeams';
 import teamChat from './components/teamChat/teamChat';
-import todaysSchedule from './components/todaysSchedule';
+import todaysSchedule from './components/todaysSchedule/todaysSchedule';
 
 export default (
     <Switch>
-        <Route exact path= '/' component={home}/>
+        {/* <Route exact path= '/' component={home}/> */}
         <Route path='/contactUs' component={contactUs}/>
-        <Route path='/managerPortal' component={managerPortal}/>
+        {/* <Route path='/managerPortal' component={managerPortal}/>
         <Route path='/adminMessages' component={adminMessages}/>
         <Route path='/managePlayers' component={managePlayers}/>
         <Route path='/addNewPlayer' component={addNewPlayer}/>
@@ -36,6 +36,6 @@ export default (
         <Route path='/mySchedule' component={mySchedule}/>
         <Route path='/myTeams' components={myTeams}/>
         <Route path='/teamChat' component={teamChat}/>
-        <Route path='todaysSchedule' component={todaysSchedule}/>
+        <Route path='todaysSchedule' component={todaysSchedule}/> */}
     </Switch>
 )

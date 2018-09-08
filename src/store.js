@@ -1,11 +1,11 @@
-import {createStore, compose} from 'redux';
+import {createStore, compose, applyMiddleware, combineReducers} from 'redux';
 import playerReducer from './Dux/playerReducer';
 import scheduleReducer from './Dux/scheduleReducer';
 import standingsReducer from './Dux/standingsReducer';
 import teamReducer from './Dux/teamReducer';
 import promiseMiddleware from 'redux-promise-middleware';
 
-const combinedReducer = combinedReducers({
+const combinedReducer = combineReducers({
     player: playerReducer,
     schedule: scheduleReducer,
     standings: standingsReducer,

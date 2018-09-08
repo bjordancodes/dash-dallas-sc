@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import {Provider} from 'react-redux';
 import {HashRouter} from 'react-router-dom';
+import ContactUs from './components/contactUs/contactUs';
+import router from './router';
+import store from './store';
 
 class App extends Component {
   render() {
@@ -16,6 +19,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
+        <ContactUs/>
         <div>{router}</div>
       </div>
       </HashRouter>
