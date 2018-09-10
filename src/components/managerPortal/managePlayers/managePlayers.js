@@ -3,23 +3,28 @@ import {connect} from 'react-redux';
 import {get_players} from '../../../Dux/playerReducer';
 
 class ManagePlayers extends Component {
+    constructor(props){
+        super(props);
+    }
 
     componentDidMount(){
         this.props.get_players();
     }
     render(){
         console.log(this.props.player)
+        {if (this.props.player.player)
+                    var playerMap = this.props.player.player.map((e, i)=> <p>{e.playername}</p>)}
         return(
-            <h1>Manage Players
-                {this.props.player.data}
-            </h1>
+            <div><h1>Manage Players</h1>
+                {playerMap}
+            </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
 return {
-    ...state.player}
+    ...state}
 };
 
 export default connect(mapStateToProps, {get_players})(ManagePlayers);

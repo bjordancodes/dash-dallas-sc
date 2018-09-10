@@ -1,10 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {get_players, add_players} from '../../../Dux/playerReducer';
 
 class AddNewTeam extends Component {
+
+    var handleName = (e) => {
+
+    }
     render(){
         return(
-            <h1>Add New Team</h1>
+            <div>
+
+            </div>
         )
     }
 }
