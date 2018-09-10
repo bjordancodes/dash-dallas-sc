@@ -1,16 +1,25 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import './menu.css';
+import {Link} from 'react-router-dom';
+import AdminMenu from '../managerPortal/adminMenu/adminMenu';
 
-class Menu extends Component {
+export default class Menu extends Component {
     render(){
+        var visibility = "hide";
+        if (this.props.menuVisibility){
+            visibility = "show";
+        }
         return(
-            <h1>Menu</h1>
+            <div id="flyoutMenu" className={visibility} onClick={this.props.handleClickHere}>
+            <Link to="/">Home</Link><br/>
+            <Link to="/MyAccount">My Account</Link><br/>
+            <Link to="/mySchedule">My Schedule</Link><br/>
+            <Link to="/teamChat">Team Chat</Link><br/>
+            <Link to="/contactUS">Contact Us</Link><br/>
+            {/* this doesn't work */}
+            <AdminMenu handleClickHere={this.props.handleClickHere}
+            menuVisibility={this.visibility}><h1>Admin Menu</h1></AdminMenu>
+            </div>
         )
     }
 }
-
-const mapStateToProps = (state) => ({
-    ...state
-});
-
-export default connect(mapStateToProps)(Menu);

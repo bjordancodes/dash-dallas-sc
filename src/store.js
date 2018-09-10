@@ -7,9 +7,9 @@ import promiseMiddleware from 'redux-promise-middleware';
 
 const combinedReducer = combineReducers({
     player: playerReducer,
-    schedule: scheduleReducer,
-    standings: standingsReducer,
-    team: teamReducer
+    // schedule: scheduleReducer,
+    // standings: standingsReducer,
+    // team: teamReducer
 })
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
