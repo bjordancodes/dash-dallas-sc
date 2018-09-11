@@ -1,0 +1,35 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    width: 95vh;
+    height: 50px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+}
+
+.class1{
+    height: 50px;
+    background-color: mediumorchid;
+    margin: 0 auto;
+    flex: 1 1 0;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid black;
+
+}
+
+.class2{
+    height: 50px;
+    background-color: lavender;
+    flex: 1 1 0;
+    text-align: center;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+h1{
+    text-align: center;
+}

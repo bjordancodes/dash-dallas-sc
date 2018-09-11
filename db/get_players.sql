@@ -1,1 +1,1 @@
-SELECT * FROM players;
+SELECT p.playername, p.email, p.address, p.phonenumber, t.teamname FROM players p JOIN teams t on p.teamname = t.teamid;

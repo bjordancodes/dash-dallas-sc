@@ -1,0 +1,1 @@
+SELECT p.playerid, p.playername, t.teamname FROM players p JOIN teams t ON p.altteam1 = t.teamid;

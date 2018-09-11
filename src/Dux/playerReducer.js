@@ -3,25 +3,12 @@ import axios from 'axios';
 const initialState = {
     player: [],
     isLoading: false,
-    playerName: '',
-    email: '',
-    address: '',
-    phonenumber: 0,
-    teamname: 0,
-    altteam1: 0,
-    altteam2: 0
 };
 
-var {playerName, email, address, phonenumber, teamname, altteam1, altteam2} = this.initialState;
 
 const GET_PLAYERS = 'GET_PLAYERS'
-const ADD_PLAYERS = 'ADD_PLAYERS'
-const UPDATE_PLAYERNAME = 'UPDATE_PLAYERNAME'
-const UPDATE_EMAIL = 'UPDATE_EMAIL'
-const UPDATE_PHONE = 'UPDATE_PHONE'
-const UPDATE_TEAMNAME = 'UPDATE_TEAM'
-const UPDATE_ALT1 = 'UPDATE_ALT1'
-const UPDATE_ALT2 = 'UPDATE_ALT2'
+const GET_TEAM2 = 'GET_TEAM2'
+const GET_TEAM3 = 'GET_TEAM3'
 
 export const get_players = () => {
     return {
@@ -32,14 +19,24 @@ export const get_players = () => {
     }
 }
 
-export const update_playerName = () => {
+export const get_team2 = () => {
     return {
-        type: UP,
-        payload: 
-    
+        type: GET_TEAM2,
+        payload: axios.get('/api/team2')
+        .then(response => {return response.data})
+        .catch(err=> console.log(err))
     }
-
 }
+
+export const get_team3 = () => {
+    return {
+        type: GET_TEAM3,
+        payload: axios.get('/api/team3')
+        .then(response => {return response.data})
+        .catch(err=> console.log(err))
+    }
+}
+
 
 export default function playerReducer(state = initialState, action){
     switch(action.type){
@@ -50,9 +47,7 @@ export default function playerReducer(state = initialState, action){
             }
         case `${GET_PLAYERS}_FULFILLED`:
 
-            return {...state, 
-                player: action.payload
-            }
+            return Object.assign({}, state, {player: action.payload} )
 
         case `${GET_PLAYERS}_REJECTED`:
             return {
@@ -60,7 +55,25 @@ export default function playerReducer(state = initialState, action){
                 isLoading: false
             }
 
-    default:
+            case `${GET_TEAM2}_PENDING`:
+            return{
+                ...state,
+                isLoading: true
+            }
+        case `${GET_TEAM2}_FULFILLED`:
+
+            return Object.assign({}, state, {team2: action.payload})
+
+        case `${GET_TEAM3}_PENDING`:
+            return{
+                ...state,
+                isLoading: true
+            }
+        case `${GET_TEAM3}_FULFILLED`:
+
+            return Object.assign({}, state, {team3: action.payload}) 
+                // player: {team3: action.payload}
+        default:
     return state;
 }
 }
