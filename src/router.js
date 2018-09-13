@@ -10,7 +10,7 @@ import addNewPlayer from './components/managerPortal/managePlayers/addNewPlayer'
 import manageTeam from './components/managerPortal/manageTeams/manageTeam';
 import addNewTeam from './components/managerPortal/manageTeams/addNewTeam';
 import masterSchedule from './components/managerPortal/masterSchedule/masterSchedule';
-import scheduler from './components/managerPortal/scheduler/scheduler';
+import addNewSchedule from './components/managerPortal/masterSchedule/addNewSchedule';
 import updateStats from './components/managerPortal/updateStats/updateStats';
 // import menu from './components/Menu/menu';
 import myAccount from './components/myAccount/myAccount';
@@ -21,7 +21,7 @@ import todaysSchedule from './components/todaysSchedule/todaysSchedule';
 
 export default (
     <Switch>
-        <Route exact path= '/' component={home}/>
+        <Route exact path= '/' component={todaysSchedule}/>
         <Route path='/contactUs' component={contactUs}/>
         <Route path='/managerPortal' component={managerPortal}/>
         <Route path='/adminMessages' component={adminMessages}/>
@@ -30,13 +30,13 @@ export default (
         <Route path='/manageTeam' component={manageTeam}/>
         <Route path='/addNewTeam' component={addNewTeam}/>
         <Route path='/masterSchedule' component={masterSchedule}/>
-        <Route path='/scheduler' component={scheduler}/>
+        <Route path='/addNewSchedule' component={addNewSchedule}/>
         <Route path='/updateStats' component={updateStats}/>
         <Route path='/myAccount' component={myAccount}/>
         <Route path='/mySchedule' component={mySchedule}/>
         <Route path='/myTeams' components={myTeams}/>
         <Route path='/teamChat' component={teamChat}/>
-        <Route path='todaysSchedule' component={todaysSchedule}/>
+        {/* <Route path='todaysSchedule' component={todaysSchedule}/> */}
         <Route path='/adminMenu' component={adminMenu}/>
     </Switch>
 )

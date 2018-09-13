@@ -25,5 +25,17 @@ module.exports = {
             req.body.altteam1, 
             req.body.altteam2])
         .then(response=> res.status(200).send(response))
+        .catch(err=> res.status(500).send(err));
+    },
+    modify_player: (req, res, next)=>{
+        const db=req.app.get('db');
+        console.log(req.body);
+        db.modify_player([req.body.playername, 
+            req.body.email, 
+            req.body.address, 
+            req.body.phonenumber,
+            req.body.playerid])
+        .then(response=> res.status(200).send(response))
         .catch(err=> res.status(500).send(err));}
+    
     }

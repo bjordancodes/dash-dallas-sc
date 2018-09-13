@@ -63,8 +63,6 @@ class AddNewPlayer extends Component {
         var {playername, email, address, phonenumber, teamname, altteam1, altteam2} = this.state;
         axios
         .post(`/api/players`, {playername, email, address, phonenumber, teamname, altteam1, altteam2})
-        
-        // playername=${playerName}&email=${email}&address=${address}&phonenumber=${phonenumber}&teamname=${teamname}&altteam1=${altteam1}&altteam2=${altteam2}`
         .then(res=> alert('New Player Created!'))
         .catch(err=> alert('internal error'))
     }

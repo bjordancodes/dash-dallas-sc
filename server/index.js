@@ -3,10 +3,10 @@ const { json } = require('body-parser');
 const massive = require('massive');
 const session = require('express-session');
 require('dotenv').config();
-const {get_players, new_player, get_2ndteam, get_3rdteam} = require('./Controllers/player_controller');
-const {get_schedule} = require('./Controllers/schedule_controller');
+const {get_players, new_player, get_2ndteam, get_3rdteam, modify_player} = require('./Controllers/player_controller');
+const {get_schedule, new_schedule, modify_schedule} = require('./Controllers/schedule_controller');
 // const {get_standings} = require('./Controllers/standings_controller');
-const {get_teams} = require('./Controllers/teams_controller');
+const {get_teams, new_team, modify_teams} = require('./Controllers/teams_controller');
 const cors = require('cors');
 
 
@@ -29,6 +29,11 @@ app.get('/api/schedule', get_schedule);
 // app.get('/api/standings', get_standings);
 app.get('/api/teams', get_teams);
 app.post('/api/players', new_player);
+app.post('/api/schedule', new_schedule);
+app.post('/api/teams', new_team);
+app.put('/api/teams', modify_teams);
+app.put('/api/players', modify_player);
+app.put('/api/schedule', modify_schedule);
 
 
 const port = 3001;

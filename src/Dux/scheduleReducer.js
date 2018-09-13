@@ -6,11 +6,12 @@ const initialState = {
 };
 
 const GET_SCHEDULE = 'GET_SCHEDULE'
+const NEW_SCHEDULE = 'NEW_SCHEDULE'
 
 export const get_schedule = () => {
 return {
     type: GET_SCHEDULE,
-    payload: axios.get('/api/teams')
+    payload: axios.get('/api/schedule')
     .then(response=> {return response.data})
     .catch(err=> console.log(err))
 }

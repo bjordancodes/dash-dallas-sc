@@ -1,0 +1,1 @@
+UPDATE teams SET teamname = $1, teamcaptain = $2, league = $3 WHERE teamid = $4;
