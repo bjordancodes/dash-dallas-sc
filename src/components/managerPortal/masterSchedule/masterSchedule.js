@@ -13,8 +13,15 @@ class MySchedule extends Component {
 
     handleSave = (info) => {
         axios.put('/api/schedule', {leaguename: info.leaguename, team1: info.team1, wdl1: info.wdl1, team2: info.team2, wdl2: info.wdl2, matchdate: info.matchdate, matchtime: info.matchtime, scheduleid: info.scheduleid})
-        .then(response=> alert("Team Updated!"))
-        .catch(err=> alert("err"));
+        .then(response=> alert("Schedule Updated!"))
+        .catch(err=> alert(err));
+    }
+
+    handleDelete = (info) => {
+        console.log({scheduleid: info.scheduleid});
+        axios.delete(`/api/schedule/${info.scheduleid}`)
+        .then(response=> alert("Schedule updated!"))
+        .catch(err=> alert(err));
     }
 
     renderEditable = (cellInfo) => {
@@ -87,8 +94,10 @@ class MySchedule extends Component {
                     Header: '',
                     Cell: row => (
                         <div>
-                            <button onClick={()=> this.handleSave(row.original)}>Save</button>
-                            <button onClick={()=> this.handleDelete(row.original)}>Delete</button>
+                            <button onClick={()=> this.handleSave(row.original)}>
+                            Save</button>
+                            <button onClick={()=> this.handleDelete(row.original)}>
+                            Delete</button>
                         </div>)
 
                 }

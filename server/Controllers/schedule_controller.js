@@ -24,6 +24,13 @@ module.exports = {
             req.body.scheduleid])
         .then(response=> res.status(200).send(response))
         .catch(err=> res.status(500).send(err));
+    },
+    delete_schedule: (req, res, next) => {
+        const db = req.app.get('db');
+        console.log('hello', req.params.scheduleid)
+    db.delete_schedule(req.params.scheduleid)
+    .then(response=> res.status(200).send(response))
+    .catch(err=> res.status(500).send(err));
     }
     
 }
