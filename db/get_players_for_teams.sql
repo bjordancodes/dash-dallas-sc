@@ -1,0 +1,1 @@
+SELECT playername, teamname FROM players WHERE teamname = $1 OR altteam1 = $1 OR altteam2 = $1;

@@ -6,7 +6,7 @@ require('dotenv').config();
 const {get_players, new_player, get_2ndteam, get_3rdteam, modify_player} = require('./Controllers/player_controller');
 const {get_schedule, new_schedule, modify_schedule, delete_schedule} = require('./Controllers/schedule_controller');
 // const {get_standings} = require('./Controllers/standings_controller');
-const {get_teams, new_team, modify_teams} = require('./Controllers/teams_controller');
+const {get_teams, new_team, modify_teams, get_players_for_teams} = require('./Controllers/teams_controller');
 const cors = require('cors');
 
 
@@ -25,6 +25,7 @@ massive(process.env.CONNECTION_STRING).then(db => app.set('db', db)).catch(err =
 app.get('/api/players', get_players);
 app.get('/api/team2', get_2ndteam);
 app.get('/api/team3', get_3rdteam);
+app.post('/api/get_players_for_teams', get_players_for_teams)
 app.get('/api/schedule', get_schedule);
 // app.get('/api/standings', get_standings);
 app.get('/api/teams', get_teams);

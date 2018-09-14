@@ -16,6 +16,13 @@ module.exports = {
         db.modify_teams([req.body.teamname, req.body.teamcaptain, req.body.league, req.body.teamid])
         .then(response=> res.sendStatus(200))
         .catch(err=> res.status(500).send(err));
+    },
+    get_players_for_teams: (req, res, next)=> {
+        const db = req.app.get('db');
+        console.log(req.body)
+        db.get_players_for_teams([req.body.teamid])
+        .then(response=> res.status(200).send(response))
+        .catch(err=> res.status(500).send(err));
     }
 }
     
