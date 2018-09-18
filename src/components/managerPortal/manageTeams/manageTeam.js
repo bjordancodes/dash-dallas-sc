@@ -45,7 +45,10 @@ class ManageTeam extends Component {
         .catch(err=> alert("err"));
     }
     handleDelete = (info) => {
-        console.log(info)
+        console.log({teamid: info.teamid});
+        axios.delete(`/api/teams/${info.teamid}`)
+        .then(response=> alert("Team Deleted!"))
+        .catch(err=> alert(err));
     }
 
     componentDidMount(){
@@ -116,7 +119,6 @@ class ManageTeam extends Component {
                             <div>
                                 <button onClick={()=> this.handleSave(row.original)}>Save</button>
                                 <button onClick={()=> this.handleDelete(row.original)}>Delete</button>
-                                <button onClick={()=>this.getPlayers(row.original)}> Get Players </button>
                             </div>
                         
                         ),
@@ -153,9 +155,7 @@ class ManageTeam extends Component {
                         }
                         defaultPageSize={10}
                         showPagination={false}
-                        // collapseOnDataChange={false}
                         freezeWhenExpanded={true}
-                        // collapseOnDataChange={false}
                         /></div>
                     )
                 }}/>

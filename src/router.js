@@ -15,9 +15,10 @@ import updateStats from './components/managerPortal/updateStats/updateStats';
 // import menu from './components/Menu/menu';
 import myAccount from './components/myAccount/myAccount';
 import mySchedule from './components/mySchedule/mySchedule';
-import myTeams from './components/myTeams/myTeams';
+import MyTeams from './components/myTeams/myTeams';
 import teamChat from './components/teamChat/teamChat';
 import todaysSchedule from './components/todaysSchedule/todaysSchedule';
+import TeamInfo from './components/myTeams/myTeam1';
 
 export default (
     <Switch>
@@ -34,8 +35,13 @@ export default (
         <Route path='/updateStats' component={updateStats}/>
         <Route path='/myAccount' component={myAccount}/>
         <Route path='/mySchedule' component={mySchedule}/>
-        <Route path='/myTeams' components={myTeams}/>
+        <Route path='/myTeams' component={MyTeams}/>
         <Route path='/teamChat' component={teamChat}/>
+        <Route path='/myTeam1/:id' render={props =>
+        <div>
+            <MyTeams/>
+            <TeamInfo props={props}/>
+        </div>}/>
         {/* <Route path='todaysSchedule' component={todaysSchedule}/> */}
         {/* <Route path='/adminMenu' component={AdminMenu}/> */}
     </Switch>

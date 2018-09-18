@@ -36,6 +36,13 @@ module.exports = {
             req.body.phonenumber,
             req.body.playerid])
         .then(response=> res.status(200).send(response))
-        .catch(err=> res.status(500).send(err));}
+        .catch(err=> res.status(500).send(err));
+    },
+    delete_player: (req, res, next) => {
+        const db=req.app.get('db');
+        db.delete_player(req.params.playerid)
+        .then(response=> res.status(200).send(response))
+        .catch(err=> res.status(500).send(err))
+    }
     
     }

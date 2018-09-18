@@ -29,6 +29,13 @@ class ManagePlayers extends Component {
         .catch(err=> alert("err"));
     }
 
+    handleDelete = (info) => {
+        console.log({playerid: info.playerid});
+        axios.delete(`/api/players/${info.playerid}`)
+        .then(response=> alert("Player Deleted!"))
+        .catch(err=> alert(err));
+    }
+
     renderEditable = (cellInfo) => {
         return(
             <div

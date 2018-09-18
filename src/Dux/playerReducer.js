@@ -9,6 +9,7 @@ const initialState = {
 const GET_PLAYERS = 'GET_PLAYERS'
 const GET_TEAM2 = 'GET_TEAM2'
 const GET_TEAM3 = 'GET_TEAM3'
+const SET_PLAYERID = 'SET_PLAYERID'
 
 export const get_players = () => {
     return {
@@ -34,6 +35,14 @@ export const get_team3 = () => {
         payload: axios.get('/api/team3')
         .then(response => {return response.data})
         .catch(err=> console.log(err))
+    }
+}
+
+export const set_playerid = () => {
+    return {
+        type: SET_PLAYERID,
+        payload: axios.get('/api/login')
+        .then(response=> {return })
     }
 }
 

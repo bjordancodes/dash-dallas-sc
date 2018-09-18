@@ -29,16 +29,8 @@ class TodaysSchedule extends Component {
                     accessor: "team1"
                 },
                 {
-                    Header: "Win/Loss/Draw",
-                    accessor: "wdl1"
-                },
-                {
                     Header: "Visiting Team",
                     accessor: "team2"
-                },
-                {
-                    Header: "Win/Loss/Draw",
-                    accessor: "wdl2"
                 },
                 {
                     Header: "Date",

@@ -23,6 +23,12 @@ module.exports = {
         db.get_players_for_teams([req.body.teamid])
         .then(response=> res.status(200).send(response))
         .catch(err=> res.status(500).send(err));
+    },
+    delete_team: (req, res, next) => {
+        const db = req.app.get('db');
+        db.delete_team(req.params.teamid)
+        .then(response=> res.status(200).send(response))
+        .catch(err=> res.status(500).send(err))
     }
 }
     
