@@ -1,1 +1,1 @@
-SELECT * FROM standings;
+SELECT * FROM standings ORDER BY standingsid;

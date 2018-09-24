@@ -38,10 +38,7 @@ export default (
         <Route path='/myTeams' component={MyTeams}/>
         <Route path='/teamChat' component={teamChat}/>
         <Route path='/myTeam1/:id' render={props =>
-        <div>
-            <MyTeams/>
-            <TeamInfo props={props}/>
-        </div>}/>
+        <div><TeamInfo props={props}/></div>}/>
         {/* <Route path='todaysSchedule' component={todaysSchedule}/> */}
         {/* <Route path='/adminMenu' component={AdminMenu}/> */}
     </Switch>

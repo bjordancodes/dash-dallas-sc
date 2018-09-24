@@ -1,1 +1,1 @@
-SELECT p.playerid, p.playername, t.teamname, p.altteam1 FROM players p JOIN teams t ON p.altteam1 = t.teamid;
+SELECT p.playerid, p.playername, t.teamname, p.altteam1 FROM players p JOIN teams t ON p.altteam1 = t.teamid ORDER BY p.playerid;

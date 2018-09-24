@@ -19,7 +19,7 @@
 
       transition: transform .3s
         cubic-bezier(0, .52, 0, 1);
-    overflow: none;
+    overflow: auto;
     z-index: 100;
     cursor: pointer;
   }
@@ -37,6 +37,7 @@
       color: #333;
       margin-left: 15px;
       text-decoration: none;
+      padding: -20px;
   }
 
   a {
@@ -44,7 +45,11 @@
      text-decoration: none;
   }
 
-  .link{
-      height: 50px;
-      width: 50px;
+  Link{
+      height: 20px;
+      width: 20px;
+  }
+
+  h2{
+      margin: 0px;
   }

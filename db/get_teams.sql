@@ -1,1 +1,1 @@
-SELECT * FROM teams;
+SELECT * FROM teams ORDER BY teamid;

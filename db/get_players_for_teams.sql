@@ -1,1 +1,1 @@
-SELECT playerid, playername, teamname FROM players WHERE teamname = $1 OR altteam1 = $1 OR altteam2 = $1;
+SELECT playerid, playername, teamname FROM players WHERE teamname = $1 OR altteam1 = $1 OR altteam2 = $1 ORDER BY playerid;

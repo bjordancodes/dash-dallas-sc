@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import '../managerPortal/managePlayers/managePlayers.css'
 import axios from 'axios';
 import ReactTable from 'react-table';
+import {Link} from 'react-router-dom';
 
 
 export default class TeamInfo extends Component {
@@ -25,8 +26,13 @@ export default class TeamInfo extends Component {
         console.log(this.props)
         return(
             <div>
+            <Link to="/myTeams" style={{color: "black"}}>
+            <p>{`<< back` }</p>
+            </Link>
             <h1> My Teams </h1>
-            My name: <h1></h1>
+           <p>
+                My name: {this.state.teaminfo.playername}
+               </p>
                 <ReactTable
                 data= {this.state.teaminfo}
                 columns={[
