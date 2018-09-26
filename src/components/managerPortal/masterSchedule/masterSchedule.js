@@ -20,7 +20,7 @@ class MySchedule extends Component {
     handleDelete = (info) => {
         console.log({scheduleid: info.scheduleid});
         axios.delete(`/api/schedule/${info.scheduleid}`)
-        .then(response=> alert("Schedule updated!"))
+        .then(response=> alert("Game updated!"))
         .catch(err=> alert(err));
     }
 
@@ -51,7 +51,7 @@ class MySchedule extends Component {
         return(
             <div>
             <h1>Master Schedule</h1>
-            <Link to="/addNewSchedule"><button>Add New Schedule</button></Link><p/>
+            <Link to="/addNewSchedule"><button>Add New Game</button></Link><p/>
             <ReactTable
             data={this.props.schedule}
             columns={[

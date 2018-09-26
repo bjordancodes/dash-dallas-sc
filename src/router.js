@@ -19,6 +19,7 @@ import MyTeams from './components/myTeams/myTeams';
 import teamChat from './components/teamChat/teamChat';
 import todaysSchedule from './components/todaysSchedule/todaysSchedule';
 import TeamInfo from './components/myTeams/myTeam1';
+import Login from './components/login/login';
 
 export default (
     <Switch>
@@ -41,5 +42,6 @@ export default (
         <div><TeamInfo props={props}/></div>}/>
         {/* <Route path='todaysSchedule' component={todaysSchedule}/> */}
         {/* <Route path='/adminMenu' component={AdminMenu}/> */}
+        <Route path='/login' component={Login}/>
     </Switch>
 )

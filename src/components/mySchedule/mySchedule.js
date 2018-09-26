@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {get_schedule} from '../../Dux/scheduleReducer';
+import {get_players_for_teams} from '../../Dux/teamReducer';
 
 class MySchedule extends Component {
 
     componentDidMount(){
         this.props.get_schedule();
+        this.props.get_players_for_teams();
     }
 
     render(){
@@ -24,7 +26,7 @@ class MySchedule extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    ...state.schedule
+    ...state
 });
 
-export default connect(mapStateToProps, {get_schedule})(MySchedule);
+export default connect(mapStateToProps, {get_schedule, get_players_for_teams})(MySchedule);

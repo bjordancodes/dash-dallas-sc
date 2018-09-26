@@ -24,8 +24,8 @@ class ManagePlayers extends Component {
     }
 
     handleSave = (info) => {
-        axios.put('/api/players', {playername: info.playername, email: info.email, address: info.address, phonenumber: info.phonenumber, playerid: info.playerid})
-        .then(response=> alert("Team Updated!"))
+        axios.put('/api/players', {playername: info.playername, email: info.email, address: info.address, phonenumber: info.phonenumber, username: info.username, playerid: info.playerid})
+        .then(response=> alert("Player Updated!"))
         .catch(err=> alert("err"));
     }
 
@@ -88,6 +88,11 @@ class ManagePlayers extends Component {
                     {
                         Header: "Team",
                         accessor: "teamname",
+                        Cell: this.renderEditable
+                    },
+                    {
+                        Header: "Username",
+                        accessor: "username",
                         Cell: this.renderEditable
                     },
                     {

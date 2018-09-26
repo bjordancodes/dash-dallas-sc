@@ -27,7 +27,7 @@ export default class AddNewSchedule extends Component {
         console.log(this.state)
         axios
         .post(`/api/schedule`, {leaguename, team1, team2, matchdate, matchtime})
-        .then(response=> alert('Schedule Added!'))
+        .then(response=> alert('Game Added!'))
         .catch(err=> alert('Error'))
     }
 
@@ -35,7 +35,7 @@ export default class AddNewSchedule extends Component {
         return(
             <div>
               <Link to='/masterSchedule' style={{color: "black", textAlign: "right"}}>{`<<`}Back to Master Schedule</Link>  
-                <h1> Add New Team</h1>
+                <h1> Add New Game</h1>
         
         <form>
         <input type="text" onChange={(e)=>this.update_cell("leaguename", e.target.value)} placeholder="League Name"/><br/>

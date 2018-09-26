@@ -4,7 +4,7 @@ module.exports={
         next();
     },
     isAdmin: (req, res, next)=>{
-        if (req.body.admin){
+        if (req.body.admin === true){
             next();
         }
         else{
@@ -14,6 +14,9 @@ module.exports={
     checkPlayerid: (req, res, next)=>{
         if (!req.session.playerid){
             req.session.playerid = [];
+        }
+        if (!req.session.user){
+            req.session.user = [];
         }
         next();
     }

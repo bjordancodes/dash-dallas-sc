@@ -6,12 +6,23 @@ const initialState = {
 };
 
 const GET_TEAMS = 'GET_TEAMS'
+const GET_PLAYERS = 'GET_PLAYERS'
 
 export const get_teams = () => {
     return {
         type: GET_TEAMS,
         payload:
         axios.get('/api/teams')
+        .then(response => {return response.data})
+        .catch(err=> console.log(err))
+    }
+}
+
+export const get_players_for_teams = () => {
+    return {
+        type: GET_PLAYERS,
+        payload:
+        axios.post('/api/teams')
         .then(response => {return response.data})
         .catch(err=> console.log(err))
     }
@@ -33,6 +44,9 @@ export default function playerReducer(state = initialState, action){
             ...state,
             isLoading: false
         }
+        case `${GET_PLAYERS}_FULFILLED`:
+            var newState = {};
+            var newArr = action.payload;
     default:
     return state;
     }

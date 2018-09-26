@@ -23,7 +23,8 @@ module.exports = {
             req.body.phonenumber, 
             req.body.teamname, 
             req.body.altteam1, 
-            req.body.altteam2])
+            req.body.altteam2,
+            req.body.username])
         .then(response=> res.status(200).send(response))
         .catch(err=> res.status(500).send(err));
     },
@@ -34,6 +35,7 @@ module.exports = {
             req.body.email, 
             req.body.address, 
             req.body.phonenumber,
+            req.body.username,
             req.body.playerid])
         .then(response=> res.status(200).send(response))
         .catch(err=> res.status(500).send(err));
