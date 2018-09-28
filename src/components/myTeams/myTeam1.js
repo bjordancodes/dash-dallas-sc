@@ -17,13 +17,19 @@ export default class TeamInfo extends Component {
         axios.post('/api/get_players_for_teams', {teamid: this.props.props.match.params.id})
         .then(res=> this.setState({teaminfo: res.data}))
         .catch(err=> console.log(err));
+        
     }
 
-    componentWillUpdate(){
-        console.log('Updated?')
+    playerName = (id) => {
+        if(id===this.state.teaminfo.playerid){
+            return this.state.teaminfo.playername
+        }
+        else {
+            return null
+        }
     }
     render(){
-        console.log(this.props)
+        console.log(this.playerName())
         return(
             <div>
             <Link to="/myTeams" style={{color: "black"}}>

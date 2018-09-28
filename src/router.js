@@ -42,6 +42,5 @@ export default (
         <div><TeamInfo props={props}/></div>}/>
         {/* <Route path='todaysSchedule' component={todaysSchedule}/> */}
         {/* <Route path='/adminMenu' component={AdminMenu}/> */}
-        <Route path='/login' component={Login}/>
     </Switch>
 )

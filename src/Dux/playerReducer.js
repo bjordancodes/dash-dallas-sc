@@ -3,6 +3,7 @@ import axios from 'axios';
 const initialState = {
     player: [],
     isLoading: false,
+    me: []
 };
 
 
@@ -10,6 +11,11 @@ const GET_PLAYERS = 'GET_PLAYERS'
 const GET_TEAM2 = 'GET_TEAM2'
 const GET_TEAM3 = 'GET_TEAM3'
 const SET_PLAYERID = 'SET_PLAYERID'
+const GET_ME = 'GET_ME'
+const GET_MY_TEAM1 = 'GET_TEAM1'
+const GET_MY_TEAM2 = 'GET_TEAM2'
+const GET_MY_TEAM3 = 'GET_TEAM3'
+
 
 export const get_players = () => {
     return {
@@ -38,11 +44,12 @@ export const get_team3 = () => {
     }
 }
 
-export const set_playerid = () => {
+export const get_me = () => {
     return {
-        type: SET_PLAYERID,
-        payload: axios.get('/api/login')
-        .then(response=> {return })
+        type: GET_ME,
+        payload: axios.get('/api/myacc')
+        .then(response => {return response.data})
+        .catch(err=> console.log(err))
     }
 }
 
@@ -81,7 +88,66 @@ export default function playerReducer(state = initialState, action){
         case `${GET_TEAM3}_FULFILLED`:
 
             return Object.assign({}, state, {team3: action.payload}) 
-                // player: {team3: action.payload}
+        
+        case `${GET_ME}_PENDING`:
+            return{
+                ...state,
+                isLoading: true
+            }
+        case `${GET_ME}_FULFILLED`:
+
+            return Object.assign({}, state, {me: action.payload} )
+
+        case `${GET_ME}_REJECTED`:
+            return {
+                ...state,
+                isLoading: false
+            }
+
+        case `${GET_MY_TEAM1}_PENDING`:
+            return{
+                ...state,
+                isLoading: true
+            }
+        case `${GET_MY_TEAM1}_FULFILLED`:
+
+            return Object.assign({}, state, {myteam1: action.payload} )
+
+        case `${GET_MY_TEAM1}_REJECTED`:
+            return {
+                ...state,
+                isLoading: false
+            }
+
+        case `${GET_MY_TEAM2}_PENDING`:
+            return{
+                ...state,
+                isLoading: true
+            }
+        case `${GET_MY_TEAM2}_FULFILLED`:
+
+            return Object.assign({}, state, {myteam2: action.payload} )
+
+        case `${GET_MY_TEAM2}_REJECTED`:
+            return {
+                ...state,
+                isLoading: false
+            }
+
+        case `${GET_MY_TEAM3}_PENDING`:
+            return{
+                ...state,
+                isLoading: true
+            }
+        case `${GET_MY_TEAM3}_FULFILLED`:
+
+            return Object.assign({}, state, {myteam3: action.payload} )
+
+        case `${GET_MY_TEAM3}_REJECTED`:
+            return {
+                ...state,
+                isLoading: false
+            }
         default:
     return state;
 }

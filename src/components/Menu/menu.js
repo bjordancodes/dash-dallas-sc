@@ -16,6 +16,7 @@ export default class Menu extends Component {
             <Link to="/MyAccount"><h2>
                 My Account</h2>
                 </Link><br/>
+            <a href="http://localhost:3001/login">Login</a>
             <Link to="/mySchedule"><h2>My Schedule</h2></Link><br/>
             <Link to="/myTeams"><h2>My Teams</h2></Link><br/>
             <Link to="/teamChat"><h2>Team Chat</h2></Link><br/>

@@ -27,6 +27,7 @@ export const get_players_for_teams = () => {
         .catch(err=> console.log(err))
     }
 }
+
 export default function playerReducer(state = initialState, action){
     switch(action.type){
         case `${GET_TEAMS}_PENDING`:

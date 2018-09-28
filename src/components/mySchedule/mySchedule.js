@@ -26,7 +26,7 @@ class MySchedule extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    ...state
+    ...state.schedule
 });
 
 export default connect(mapStateToProps, {get_schedule, get_players_for_teams})(MySchedule);
