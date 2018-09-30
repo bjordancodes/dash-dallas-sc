@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 import contactUs from './components/contactUs/contactUs';
 import home from './components/Home/home';
 import managerPortal from './components/managerPortal/managerPortal';
@@ -19,29 +19,52 @@ import MyTeams from './components/myTeams/myTeams';
 import teamChat from './components/teamChat/teamChat';
 import todaysSchedule from './components/todaysSchedule/todaysSchedule';
 import TeamInfo from './components/myTeams/myTeam1';
-import Login from './components/login/login';
 import Scheduler from './components/managerPortal/scheduler/scheduler';
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={(props) => (
+    localStorage.getItem('token')
+        ? <Component {...props} />
+        : <Redirect {...alert('unAuthorized, please login')} to={{
+            pathname: '/',
+            state: { from: props.location }
+          }} />
+    )} />
+  )
+
+const AdminRoute = ({ component: Component, ...rest }) => (
+        <Route {...rest} render={(props) => (
+        localStorage.getItem('isAdmin')
+            ? <Component {...props} />
+            :
+            <Redirect {...alert('Unauthorized, please login with an Admin account')} to={{
+                pathname: '/',
+                state: { from: props.location }
+              }} />
+              
+        )} />
+      )
 
 export default (
     <Switch>
         <Route exact path= '/' component={todaysSchedule}/>
         <Route path='/contactUs' component={contactUs}/>
-        <Route path='/managerPortal' component={managerPortal}/>
-        <Route path='/adminMessages' component={adminMessages}/>
-        <Route path='/managePlayers' component={managePlayers}/>
-        <Route path='/addNewPlayer' component={addNewPlayer}/>
-        <Route path='/manageTeam' component={manageTeam}/>
-        <Route path='/addNewTeam' component={addNewTeam}/>
-        <Route path='/masterSchedule' component={masterSchedule}/>
-        <Route path='/addNewSchedule' component={addNewSchedule}/>
-        <Route path='/updateStats' component={updateStats}/>
-        <Route path='/myAccount' component={myAccount}/>
-        <Route path='/mySchedule' component={mySchedule}/>
-        <Route path='/myTeams' component={MyTeams}/>
-        <Route path='/teamChat' component={teamChat}/>
+        <AdminRoute path='/managerPortal' component={managerPortal}/>
+        <AdminRoute path='/adminMessages' component={adminMessages}/>
+        <AdminRoute path='/managePlayers' component={managePlayers}/>
+        <AdminRoute path='/addNewPlayer' component={addNewPlayer}/>
+        <AdminRoute path='/manageTeam' component={manageTeam}/>
+        <AdminRoute path='/addNewTeam' component={addNewTeam}/>
+        <AdminRoute path='/masterSchedule' component={masterSchedule}/>
+        <AdminRoute path='/addNewSchedule' component={addNewSchedule}/>
+        <AdminRoute path='/updateStats' component={updateStats}/>
+        <PrivateRoute path='/myAccount' component={myAccount}/>
+        <PrivateRoute path='/mySchedule' component={mySchedule}/>
+        <PrivateRoute path='/myTeams' component={MyTeams}/>
+        <PrivateRoute path='/teamChat' component={teamChat}/>
         <Route path='/myTeam1/:id' render={props =>
         <div><TeamInfo props={props}/></div>}/>
-        <Route path='/scheduler' component={Scheduler}/>
+        <AdminRoute path='/scheduler' component={Scheduler}/>
         {/* <Route path='todaysSchedule' component={todaysSchedule}/> */}
         {/* <Route path='/adminMenu' component={AdminMenu}/> */}
     </Switch>

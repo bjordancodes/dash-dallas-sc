@@ -3,7 +3,7 @@ const { json } = require('body-parser');
 const massive = require('massive');
 const session = require('express-session');
 require('dotenv').config();
-const {get_players, new_player, get_2ndteam, get_3rdteam, modify_player, delete_player} = require('./Controllers/player_controller');
+const {get_players, new_player, get_2ndteam, get_3rdteam, modify_player, delete_player, rsvp_update} = require('./Controllers/player_controller');
 const {get_schedule, new_schedule, modify_schedule, delete_schedule, get_league_teams, get_leagues} = require('./Controllers/schedule_controller');
 // const {get_standings} = require('./Controllers/standings_controller');
 const {get_teams, new_team, modify_teams, get_players_for_teams, delete_team} = require('./Controllers/teams_controller');
@@ -11,7 +11,8 @@ const cors = require('cors');
 const {logger, isAdmin, checkPlayerid} = require('./middlewares');
 const passport = require('passport');
 const Auth0Strategy = require('passport-auth0')
-const {getUser, getTeam1, getTeam2, getTeam3} = require('./Controllers/login_controller');
+const {getUser, getTeam1, getTeam2, getTeam3, signout} = require('./Controllers/login_controller');
+const nodemailer = require('nodemailer');
 
 
 const app = express();
@@ -38,7 +39,7 @@ passport.use( new Auth0Strategy({
     callbackURL: '/login',
     scope: "openid email profile"
 },
-function(accessToken, refreshToken, exraParams, profile, done){
+function(accessToken, refreshToken, extraParams, profile, done){
     return done(null, profile);
 }));
 
@@ -55,16 +56,32 @@ app.get('/login', passport.authenticate('auth0', {
     failureRedirect: '/login',
 }));
 
-const authenticated=(req, res, next) =>{
-    if (req.user){
-        next()
-    }
-    else {
-        res.sendStatus(401);
-    }
-}
+//nodemailer//
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    secure: false,
+    port: 25,
+    auth: {
+      user: 'dashsoccersc@gmail.com',
+      pass: process.env.EMAIL_PASSWORD
+    },
+    // tls: {
+    //   rejectUnauthorized: false
+    // }
+  });
 
-
+  app.post('/sendMail', (req, res, next) => 
+  {console.log(req.body)
+     transporter.sendMail(
+    req.body.email
+    , (error, info) => {
+    if (error) {
+      return console.log(error);
+    }
+    console.log("The message was sent!");
+    console.log(info);
+  })})
+  
 
 //player
 
@@ -78,6 +95,7 @@ app.get('/api/myacc', getUser);
 app.get('/api/myteam1', getTeam1);
 app.get('/api/myteam2', getTeam2);
 app.get('/api/myteam3', getTeam3);
+app.get('/logout', signout);
 
 //teams info
 app.get('/api/teams', get_teams);
@@ -87,6 +105,7 @@ app.post('/api/get_players_for_teams', get_players_for_teams)
 app.post('/api/teams', new_team);
 app.put('/api/teams', modify_teams);
 app.delete('/api/teams/:teamid', delete_team);
+app.post('/api/rsvp', rsvp_update)
 
 //schedule info
 app.get('/api/schedule', get_schedule);

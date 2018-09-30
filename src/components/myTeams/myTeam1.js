@@ -28,17 +28,17 @@ export default class TeamInfo extends Component {
             return null
         }
     }
+    rsvpUpdate = () => {
+            
+    }
     render(){
-        console.log(this.playerName(3))
+        console.log(this.state)
         return(
             <div>
             <Link to="/myTeams" style={{color: "black"}}>
             <p>{`<< back` }</p>
             </Link>
             <h1> My Teams </h1>
-           <p>
-                My name: {this.state.teaminfo.playername}
-               </p>
                 <ReactTable
                 data= {this.state.teaminfo}
                 columns={[
@@ -47,6 +47,10 @@ export default class TeamInfo extends Component {
                         id: 1,
                         accessor: 'playername'
                     },
+                    {
+                        Header: 'Game RSVP',
+                        accessor: 'rsvp'
+                    }
                 
                 ]}/>
             </div>

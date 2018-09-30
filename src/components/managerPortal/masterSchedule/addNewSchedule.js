@@ -32,6 +32,8 @@ export default class AddNewSchedule extends Component {
     }
 
     render(){
+        console.log(localStorage.setItem('token', 'token'))
+        console.log(localStorage.getItem('token'))
         return(
             <div>
               <Link to='/masterSchedule' style={{color: "black", textAlign: "right"}}>{`<<`}Back to Master Schedule</Link>  

@@ -24,7 +24,8 @@ module.exports = {
             req.body.teamname, 
             req.body.altteam1, 
             req.body.altteam2,
-            req.body.username])
+            req.body.username,
+            ])
         .then(response=> res.status(200).send(response))
         .catch(err=> res.status(500).send(err));
     },
@@ -36,7 +37,8 @@ module.exports = {
             req.body.address, 
             req.body.phonenumber,
             req.body.username,
-            req.body.playerid])
+            req.body.playerid,
+            req.body.rsvp])
         .then(response=> res.status(200).send(response))
         .catch(err=> res.status(500).send(err));
     },
@@ -45,6 +47,15 @@ module.exports = {
         db.delete_player(req.params.playerid)
         .then(response=> res.status(200).send(response))
         .catch(err=> res.status(500).send(err))
+    },
+    rsvp_update: (req, res, next) => {
+        const db=req.app.get('db');
+        console.log(req.body);
+        db.modify_rsvp([
+            req.body.playerid,
+            req.body.rsvp])
+        .then(response=> res.status(200).send(response))
+        .catch(err=> res.status(500).send(err));
     }
     
     }
