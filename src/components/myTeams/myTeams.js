@@ -4,11 +4,12 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 
+
 export default class MyTeams extends Component {
     constructor(props){
         super(props);
         this.state = {
-            playerid: 1,
+            playerid: 0,
             teamid1: 0,
             teamid2: 0,
             teamid3: 0,
@@ -20,21 +21,38 @@ export default class MyTeams extends Component {
     }
     
     componentWillMount(){
+        axios.get('/api/myacc')
+        .then(res=> this.setState(
+            {
+                playerid: res.data[0].playerid
+            }
+        ))
+        axios.get('/api/myteam1')
+        .then(res=> this.setState(
+            {
+                team1info: res.data[0].teamname
+            }
+        ))
+        axios.get('/api/myteam2')
+        .then(res=> this.setState(
+            {
+                team2info: res.data[0].altteam1
+            }
+        ))
+        axios.get('/api/myteam3')
+        .then(res=> this.setState(
+            {
+                team3info: res.data[0].altteam2
+            }
+        ))
         axios.get('/api/players')
         .then(res=> this.setState(
             {playerinfo: res.data,
-            teamid1: res.data[0].teamid,
-            teamid2: res.data[0].altteam1,
-            teamid3: res.data[0].altteam2,
-            playerid: res.data[0].playerid
+            teamid1: res.data[this.state.playerid].teamid,
+            teamid2: res.data[this.state.playerid].altteam1,
+            teamid3: res.data[this.state.playerid].altteam2,
         }))
         .catch(err=> console.log(err));
-        axios.post('/api/get_players_for_teams', {teamid: this.state.teamid2})
-        .then(res=> this.setState({team2info: res.data}))
-        .catch(err=> console.log(err));
-        axios.post('/api/get_players_for_teams', {teamid: this.state.teamid3})
-        .then(res=> this.setState({team2info: res.data}))
-        .catch(err=> console.log(err))
     }
     componentDidMount(){
         
@@ -70,17 +88,17 @@ export default class MyTeams extends Component {
             My name: <h1>
             <Link to={`/myTeam1/${this.state.teamid1}`}>
             <button>
-                Get Team 1
+                {this.state.team1info}
                 </button>
                 </Link><br/>
                 <Link to={`/myTeam1/${this.state.teamid2}`}>
             <button>
-                Get Team 2
+                {this.state.team2info}
                 </button>
                 </Link><br/>
                 <Link to={`/myTeam1/${this.state.teamid3}`}>
             <button>
-                Get Team 3
+                {this.state.team3info}
                 </button>
                 </Link><br/>
             </h1>

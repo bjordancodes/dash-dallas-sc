@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {get_me} from '../../Dux/playerReducer';
+import {get_me, getMyTeam1, getMyTeam2, getMyTeam3} from '../../Dux/playerReducer';
 import axios from 'axios';
 import ReactTable from 'react-table';
 
@@ -8,25 +8,34 @@ class MyAccount extends Component {
     constructor(props){
         super(props);
         this.state={
-            
+            me: {},
+            team1: {},
+            team2: {},
+            team3: {}
         }
     }
 
     componentDidMount(){
         this.props.get_me();
+        this.props.getMyTeam1();
+        this.props.getMyTeam2();
+        this.props.getMyTeam3();
+        this.stateSetter();
+
+    }
+
+    stateSetter(){
+        this.setState({me: this.props.me,
+        team1: this.props.myteam1,
+        team2: this.props.team2,
+        team3: this.props.team3
+    })
     }
 
     handleSave = (info) => {
         axios.put('/api/players', {playername: info.playername, email: info.email, address: info.address, phonenumber: info.phonenumber, username: info.username, playerid: info.playerid})
         .then(response=> alert("Account Updated!"))
         .catch(err=> alert("err"));
-    }
-
-    handleDelete = (info) => {
-        console.log({playerid: info.playerid});
-        axios.delete(`/api/players/${info.playerid}`)
-        .then(response=> alert("Player Deleted!"))
-        .catch(err=> alert(err));
     }
 
     renderEditable = (cellInfo) => {
@@ -36,7 +45,7 @@ class MyAccount extends Component {
                 suppressContentEditableWarning
                 onBlur={e=> {
                     
-                    const data = [...this.props.player];
+                    const data = [...this.props.me];
                     data[cellInfo.index][cellInfo.column.id] = e.target.innerHTML;
                     this.setState({data})
                     console.log(this.state.data);
@@ -44,7 +53,7 @@ class MyAccount extends Component {
             }
             
                 dangerouslySetInnerHTML={{
-                    __html: this.props.player[cellInfo.index][cellInfo.column.id]
+                    __html: this.props.me[cellInfo.index][cellInfo.column.id]
                 }
             }
             />
@@ -52,11 +61,13 @@ class MyAccount extends Component {
     }
 
     render(){
+        console.log(this.props.me)
+        console.log(this.props.player)
         return(
-            <div><h1>Manage Players</h1>
+            <div><h1>My Account</h1>
             
                 <ReactTable
-                data= {this.props.player}
+                data= {this.props.me}
                 columns={[
                     {
                         Header: "Name",
@@ -79,11 +90,6 @@ class MyAccount extends Component {
                         Cell: this.renderEditable
                     },
                     {
-                        Header: "Team",
-                        accessor: "teamname",
-                        Cell: this.renderEditable
-                    },
-                    {
                         Header: "Username",
                         accessor: "username",
                         Cell: this.renderEditable
@@ -98,7 +104,7 @@ class MyAccount extends Component {
                     }
                 ]}
                 
-                defaultPageSize={20}
+                defaultPageSize={1}
                 className="-striped -highlight"/>
                 </div>
         )
@@ -107,8 +113,8 @@ class MyAccount extends Component {
 
 
 
-const mapStateToProps = (state) => ({
-    ...state.me
+const mapStateToProps = (state) =>({
+    ...state.player
 });
 
-export default connect(mapStateToProps, {get_me})(MyAccount);
+export default connect(mapStateToProps, {get_me, getMyTeam1, getMyTeam2, getMyTeam3})(MyAccount);

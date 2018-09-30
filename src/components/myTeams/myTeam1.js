@@ -29,7 +29,7 @@ export default class TeamInfo extends Component {
         }
     }
     render(){
-        console.log(this.playerName())
+        console.log(this.playerName(3))
         return(
             <div>
             <Link to="/myTeams" style={{color: "black"}}>

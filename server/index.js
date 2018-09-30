@@ -4,7 +4,7 @@ const massive = require('massive');
 const session = require('express-session');
 require('dotenv').config();
 const {get_players, new_player, get_2ndteam, get_3rdteam, modify_player, delete_player} = require('./Controllers/player_controller');
-const {get_schedule, new_schedule, modify_schedule, delete_schedule} = require('./Controllers/schedule_controller');
+const {get_schedule, new_schedule, modify_schedule, delete_schedule, get_league_teams, get_leagues} = require('./Controllers/schedule_controller');
 // const {get_standings} = require('./Controllers/standings_controller');
 const {get_teams, new_team, modify_teams, get_players_for_teams, delete_team} = require('./Controllers/teams_controller');
 const cors = require('cors');
@@ -93,7 +93,8 @@ app.get('/api/schedule', get_schedule);
 app.post('/api/schedule', new_schedule);
 app.put('/api/schedule', modify_schedule);
 app.delete('/api/schedule/:scheduleid', delete_schedule);
-
+app.get('/api/leagues', get_leagues);
+app.post('/api/leagues', get_league_teams);
 
 
 // app.get('/api/standings', get_standings);

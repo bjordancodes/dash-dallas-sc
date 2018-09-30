@@ -3,7 +3,10 @@ import axios from 'axios';
 const initialState = {
     player: [],
     isLoading: false,
-    me: []
+    me: [],
+    myteam1: [],
+    myteam2: [],
+    myteam3: []
 };
 
 
@@ -48,6 +51,33 @@ export const get_me = () => {
     return {
         type: GET_ME,
         payload: axios.get('/api/myacc')
+        .then(response => {return response.data})
+        .catch(err=> console.log(err))
+    }
+}
+
+export const getMyTeam1 = () => {
+    return {
+        type: GET_MY_TEAM1,
+        payload: axios.get('/api/myteam1')
+        .then(response => {return response.data})
+        .catch(err=> console.log(err))
+    }
+}
+
+export const getMyTeam2 = () => {
+    return {
+        type: GET_MY_TEAM2,
+        payload: axios.get('/api/myteam2')
+        .then(response => {return response.data})
+        .catch(err=> console.log(err))
+    }
+}
+
+export const getMyTeam3 = () => {
+    return {
+        type: GET_MY_TEAM3,
+        payload: axios.get('/api/myteam3')
         .then(response => {return response.data})
         .catch(err=> console.log(err))
     }

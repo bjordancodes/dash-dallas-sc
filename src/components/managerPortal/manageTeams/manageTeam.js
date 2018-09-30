@@ -16,7 +16,12 @@ class ManageTeam extends Component {
             teamid: 0
         }
     }
-
+    
+    componentDidMount(){
+        this.props.get_teams();
+        // axios.post('/api/get_players_for_teams', {teamid: 1})
+        // .then(res => this.setState({teamdata: res}))
+    }
     renderEditable = (cellInfo) => {
         return(
             <div
@@ -51,11 +56,6 @@ class ManageTeam extends Component {
         .catch(err=> alert(err));
     }
 
-    componentDidMount(){
-        this.props.get_teams();
-        // axios.post('/api/get_players_for_teams', {teamid: 1})
-        // .then(res => this.setState({teamdata: res}))
-    }
 
     getPlayers = (info) => {
         console.log(info.teamid)

@@ -20,6 +20,7 @@ import teamChat from './components/teamChat/teamChat';
 import todaysSchedule from './components/todaysSchedule/todaysSchedule';
 import TeamInfo from './components/myTeams/myTeam1';
 import Login from './components/login/login';
+import Scheduler from './components/managerPortal/scheduler/scheduler';
 
 export default (
     <Switch>
@@ -40,6 +41,7 @@ export default (
         <Route path='/teamChat' component={teamChat}/>
         <Route path='/myTeam1/:id' render={props =>
         <div><TeamInfo props={props}/></div>}/>
+        <Route path='/scheduler' component={Scheduler}/>
         {/* <Route path='todaysSchedule' component={todaysSchedule}/> */}
         {/* <Route path='/adminMenu' component={AdminMenu}/> */}
     </Switch>
