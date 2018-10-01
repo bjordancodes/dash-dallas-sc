@@ -16,7 +16,7 @@ class TodaysSchedule extends Component {
         console.log(this.props.schedule)}
         return(
             <div>
-                <h1>Today's Schedule</h1>
+                <h1>Soccer Schedule</h1>
             <ReactTable
             data={this.props.schedule}
             columns={[

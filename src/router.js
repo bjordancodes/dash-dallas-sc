@@ -25,7 +25,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route {...rest} render={(props) => (
     localStorage.getItem('token')
         ? <Component {...props} />
-        : <Redirect {...alert('unAuthorized, please login')} to={{
+        : <Redirect {...alert('Unauthorized, please login')} to={{
             pathname: '/',
             state: { from: props.location }
           }} />

@@ -99,7 +99,6 @@ class MyAccount extends Component {
                         Cell: row => (
                             <div>
                                 <button onClick={()=> this.handleSave(row.original)}>Save</button>
-                                <button onClick={()=> this.handleDelete(row.original)}>Delete</button>
                             </div>)
                     }
                 ]}

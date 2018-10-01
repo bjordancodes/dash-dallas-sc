@@ -11,7 +11,7 @@ class Scheduler extends Component {
         this.state = {
             league: '',
             teams: [],
-            time: 17,
+            time: ['18:00', '19:00', '20:00', '21:00'],
             month: 10,
             day: 10,
             leaguename: '',
@@ -48,18 +48,36 @@ scheduleFunction = (team1, league, dateMonth, dateDay) => {
   
 
   for (let i = 0; i < league.length; i++){
+    console.log("this is the state" + this.state.time)
 
 var startDate = dateDay += 7;
-var time = this.state.time +=1;
-var gameTime = (time) =>{
+var time = ['18:00', '19:00', '20:00', '21:00'];
+var gameTime = () => {
+    if((i+1)%4===0){
+        return '18:00'
+    }
+    if((i+1)%3===0){
+        return '19:00'
+    }
+    if((i+1)%2===0){
+        return '20:00'
+    }
+    if((i+1)%1===0){
+        return '21:00'
+    }
+}
+// var gameTime = (time) =>{
 
-if( time >= 21){
-    time -= 5;
-    return time + ':00';}
-else {
-    return time + ':00';
-}
-}
+//     console.log(time)
+// if( time >= 22){
+//     var newTime = time - 5
+//     this.setState({time: 17})
+//     return newTime + ':00';}
+// else {
+//     return time + ':00';
+// }
+// }
+
 let dateHere = (day) => {
   let monthUpdate = dateMonth+1
   if(day >= 30){
@@ -71,7 +89,7 @@ let dateHere = (day) => {
     newArr.push({team1: team1,
       team2: league[i].teamname,
       date: dateHere(startDate),
-      time: gameTime(time)}
+      time: gameTime()}
     )}
   for (let i = 0; i < league.length; i++)
   if (team1 === newArr[i].team2){
@@ -101,9 +119,12 @@ submitForm = (e) => {
 }
 
 handleSave = (info) => {
-    axios.put('/api/schedule', {leaguename: info.leaguename, team1: info.team1, wdl1: info.wdl1, team2: info.team2, wdl2: info.wdl2, matchdate: info.matchdate, matchtime: info.matchtime, scheduleid: info.scheduleid})
-    .then(response=> alert("Schedule Updated!"))
-    .catch(err=> alert(err));
+    var {leaguename, team1, team2, matchdate, matchtime} = info;
+        console.log(info)
+        axios
+        .post(`/api/schedule`, {leaguename, team1, team2, matchdate, matchtime})
+        .then(response=> alert('Game Added!'))
+        .catch(err=> alert('Error'))
 }
 
 handleDelete = (info) => {
@@ -137,6 +158,7 @@ console.log(this.state.schedule);
 getTeams = (e) =>{
     this.props.get_league_teams({leaguename: e})
     this.setState({teams: this.props.leagueteams})
+    console.log(this.props.leagueteams)
 }
 
 leagueOptions = () => {
@@ -146,7 +168,7 @@ leagueOptions = () => {
 return (
     <select onChange={(e)=> {
     this.setState({leaguename: e.target.value})
-    this.getTeams(e.target.value);}}>
+    this.getTeams(e.target.value)}}>
         <option value="Select">Select a League</option>
         {listItems}
     </select>
@@ -155,7 +177,6 @@ return (
     render(){
         // console.log(this.state)
         // console.log(this.props)
-        console.log(this.state.teams)
         // leagueOptions = this.props.leagues.map((e)=> <option value={e} OnChange={(e)=> {this.setState({league: e.target.value})}}>{e}</option>)
         return(
             <div>
@@ -196,8 +217,6 @@ return (
                         <div>
                             <button onClick={()=> this.submitForm(row.original)}>
                             Save</button>
-                            <button onClick={()=> this.handleDelete(row.original)}>
-                            Delete</button>
                         </div>)
 
                 }
