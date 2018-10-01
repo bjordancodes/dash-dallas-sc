@@ -50,9 +50,11 @@ module.exports = {
     },
     rsvp_update: (req, res, next) => {
         const db=req.app.get('db');
-        console.log(req.body);
+        console.log([
+            req.session.passport.user.email,
+            req.body.rsvp]);
         db.modify_rsvp([
-            req.body.playerid,
+            req.session.passport.user.email,
             req.body.rsvp])
         .then(response=> res.status(200).send(response))
         .catch(err=> res.status(500).send(err));

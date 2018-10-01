@@ -105,7 +105,7 @@ app.post('/api/get_players_for_teams', get_players_for_teams)
 app.post('/api/teams', new_team);
 app.put('/api/teams', modify_teams);
 app.delete('/api/teams/:teamid', delete_team);
-app.post('/api/rsvp', rsvp_update)
+app.post('/api/rsvp', rsvp_update);
 
 //schedule info
 app.get('/api/schedule', get_schedule);
