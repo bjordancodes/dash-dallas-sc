@@ -16,7 +16,7 @@ export default class Menu extends Component {
     <Link to="/manageTeam"><h2>Manage Teams</h2></Link><br/>
     <Link to="/addNewTeam"><h2>Add New Team</h2></Link><br/>
     <Link to="/masterSchedule"><h2>Manage Schedule</h2></Link><br/>
-    <Link to="/scheduler"><h2>Auto Scheduler</h2></Link><br/>
+    {/* <Link to="/scheduler"><h2>Auto Scheduler</h2></Link><br/> */}
     <Link to="/addNewSchedule"><h2>Add New Schedule</h2></Link><br/>
     </div>
         }
