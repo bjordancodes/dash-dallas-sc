@@ -28,6 +28,8 @@ app.use(checkPlayerid);
 massive(process.env.CONNECTION_STRING).then(db => app.set('db', db)).catch(err => console.log(err));
 app.use(logger);
 
+app.use(express.static(`${__dirname}/../build`))
+
 // Auth
 
 app.use(passport.initialize());
@@ -52,7 +54,7 @@ passport.deserializeUser((user, done)=>{
 });
 
 app.get('/login', passport.authenticate('auth0', {
-    successRedirect: process.env.SUCCESS_REDIRECT,
+    successRedirect: process.env.REACT_APP_SUCCESS_REDIRECT,
     failureRedirect: '/login',
 }));
 
