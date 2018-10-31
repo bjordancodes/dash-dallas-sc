@@ -52,7 +52,7 @@ passport.deserializeUser((user, done)=>{
 });
 
 app.get('/login', passport.authenticate('auth0', {
-    successRedirect: 'http://localhost:3000/#/MyAccount',
+    successRedirect: process.env.SUCCESS_REDIRECT,
     failureRedirect: '/login',
 }));
 
