@@ -25,7 +25,7 @@ export default class Menu extends Component {
             <Link to="/MyAccount"><h2>My Account</h2></Link><br/>
     <Link to="/mySchedule"><h2>My Schedule</h2></Link><br/>
     <Link to="/myTeams"><h2>My Teams</h2></Link><br/>
-    <a href="http://localhost:3001/login" onClick={()=> {localStorage.setItem('isAdmin', 'true'); localStorage.setItem('token', 'token')}}><h2>
+    <a href={process.env.REACT_APP_LOGIN} onClick={()=> {localStorage.setItem('isAdmin', 'true'); localStorage.setItem('token', 'token')}}><h2>
         Manager Login
         </h2>
         </a><br/>
